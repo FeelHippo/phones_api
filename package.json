@@ -1,0 +1,28 @@
+{
+  "name": "react_phone_app",
+  "version": "1.0.0",
+  "description": "DCSL GuideSmiths - Code Challenge",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prestart": "tsc",
+    "start": "nodemon dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Filippo Miorin",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^9.1.4",
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.4",
+    "@types/boom": "^7.3.1",
+    "@types/hapi": "^18.0.6",
+    "@types/hapi__hapi": "^20.0.9",
+    "@types/lokijs": "^1.5.6",
+    "@types/uuid": "^8.3.1",
+    "lokijs": "^1.5.12",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.4.3",
+    "uuid": "^8.3.2"
+  }
+}
