@@ -73,13 +73,29 @@ const init = async () => {
 
         // save data
         const col = await loadCollection(COLLECTION_DATA, db);
-        const result = col.insert({
+        col.insert({
           id: uniqueId(),
           ...rest,
           imageFileName: filename,
         })
         db.saveDatabase();
-        
+
+        return h.response({ success: true }).code(200);
+      } catch (err) {
+        return (Boom.badRequest(err.message, err));
+      }
+    }
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/delete-phone/{id}',
+    handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      try {
+        const col = await loadCollection(COLLECTION_DATA, db);
+        col.chain().find({ id: request.params.id }).remove()
+        db.saveDatabase();
+
         return h.response({ success: true }).code(200);
       } catch (err) {
         return (Boom.badRequest(err.message, err));
@@ -100,6 +116,22 @@ const init = async () => {
 
         const { data } = col
         return h.response(data.map(({ $loki, ...phone }) => ({ ...phone }))).code(200);
+        
+      } catch (err) {
+        return (Boom.badRequest(err.message, err));
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/phone/{id}',
+    handler: async (request: hapi.Request, h: hapi.ResponseToolkit) => {
+      try {
+        const col = await loadCollection(COLLECTION_DATA, db);
+
+        const { data } = col
+        return h.response(data.find(phone => phone.id === request.params.id)).code(200);
         
       } catch (err) {
         return (Boom.badRequest(err.message, err));

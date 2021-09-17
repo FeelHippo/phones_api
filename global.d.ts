@@ -7,7 +7,7 @@ interface Phone {
   price: number,
   screen?: string,
   processor?: string,
-  ram?: string,
+  ram?: number,
   file: Image,
 }
 
