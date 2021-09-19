@@ -67,6 +67,7 @@ const init = async () => {
         const { _data } = file
         fs.writeFile(`./${COLLECTION_PICTURES}/${filename}`, _data, err => {
           if (err) {
+            console.log('Could not upload image: ', err)
             return h.response('Failed to upload image.').code(200);
           }
         })
@@ -86,6 +87,10 @@ const init = async () => {
       }
     }
   });
+
+  /**
+   * DELETE
+   */
 
   server.route({
     method: 'DELETE',
